@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Yi (Sean) Xia — AI / Computer Vision Researcher · Auckland</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Yi (Sean) Xia — PhD candidate in computer vision and human activity recognition at Auckland University of Technology. AI Developer at TOHU MEDIA. Tāmaki Makaurau / Auckland, Aotearoa New Zealand." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  :root {
+    --primary: #1c3057;        /* deep midnight blue */
+    --primary-2: #2a467c;
+    --primary-soft: #e9eef5;
+    --accent: #a36037;         /* warm copper */
+    --accent-2: #c87a4d;
+    --accent-soft: #f3ead8;
+    --ink: #15181f;
+    --ink-2: #2c3442;
+    --muted: #6b7180;
+    --muted-2: #8e94a3;
+    --bg: #fdfbf3;             /* warm paper */
+    --panel: #ffffff;
+    --rule: #e3dccb;
+    --shadow: 0 8px 30px rgba(28, 48, 87, 0.08);
+    --shadow-lg: 0 18px 50px rgba(28, 48, 87, 0.12);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Inter","Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif;
+    font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--primary); text-decoration: none; }
+  a:hover { color: var(--accent); }
+  ::selection { background: var(--accent-soft); color: var(--ink); }
+
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+  section { padding: 84px 0; border-top: 1px solid var(--rule); }
+  section:first-of-type { border-top: 0; }
+
+  /* ---------- Nav ---------- */
+  nav.top {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(253, 251, 243, 0.88);
+    backdrop-filter: saturate(160%) blur(12px);
+    -webkit-backdrop-filter: saturate(160%) blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+  nav.top .row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 28px; max-width: 1100px; margin: 0 auto;
+  }
+  nav.top .brand {
+    font-family: "Fraunces", serif; font-weight: 600; font-size: 21px;
+    letter-spacing: -0.01em; color: var(--primary);
+  }
+  nav.top .brand .alt { color: var(--accent); font-style: italic; font-weight: 400; padding-left: 4px; }
+  nav.top ul { list-style:none; display:flex; gap:24px; margin:0; padding:0; }
+  nav.top a { color: var(--ink-2); font-size: 13.5px; font-weight: 500; letter-spacing: 0.02em; }
+  nav.top a:hover { color: var(--accent); }
+  @media (max-width: 720px) { nav.top ul { display: none; } }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 100px 0 60px; position: relative; overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; top: -200px; right: -200px;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(163,96,55,0.12), transparent 60%);
+    z-index: 0;
+  }
+  .hero .grid {
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .hero .eyebrow {
+    font-size: 11.5px; font-weight: 600; letter-spacing: 0.32em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 18px; display: inline-flex; align-items: center; gap: 10px;
+  }
+  .hero .eyebrow::before {
+    content: ""; width: 28px; height: 1.5px; background: var(--accent);
+  }
+  .hero h1 {
+    font-family: "Fraunces", serif; font-weight: 500;
+    font-size: clamp(42px, 6vw, 76px);
+    line-height: 1.02; letter-spacing: -0.025em; margin: 0 0 22px;
+    color: var(--primary);
+  }
+  .hero h1 .you {
+    color: var(--accent); display: inline-block; position: relative;
+    font-style: italic; font-weight: 400;
+  }
+  .hero .lead { font-size: 18px; line-height: 1.65; color: var(--ink-2); margin: 0 0 24px; max-width: 560px; }
+  .hero .lead strong { color: var(--primary); font-weight: 600; }
+  .hero .meta {
+    font-size: 14px; color: var(--muted); margin-bottom: 28px;
+    display: flex; gap: 18px; flex-wrap: wrap;
+  }
+  .hero .meta span { display: inline-flex; align-items: center; gap: 6px; }
+  .hero .meta .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .hero .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items:center; gap: 8px;
+    padding: 12px 22px; border-radius: 999px; font-weight: 600; font-size: 14px;
+    transition: all .18s ease; letter-spacing: 0.01em;
+  }
+  .btn.primary { background: var(--primary); color: #fff; }
+  .btn.primary:hover { background: var(--primary-2); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(28,48,87,0.25); }
+  .btn.accent { background: var(--accent); color: #fff; }
+  .btn.accent:hover { background: var(--accent-2); transform: translateY(-1px); }
+  .btn.ghost { background: transparent; color: var(--primary); border: 1.5px solid var(--rule); }
+  .btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero .card {
+    background: var(--panel); border-radius: 18px; padding: 28px;
+    box-shadow: var(--shadow-lg); border: 1px solid var(--rule);
+    position: relative;
+  }
+  .hero .card::before {
+    content: ""; position: absolute; top: 0; left: 28px; right: 28px;
+    height: 3px; background: var(--accent); border-radius: 0 0 3px 3px;
+  }
+  .hero .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 6px; }
+  .stat .num {
+    font-family: "Fraunces", serif; font-weight: 600; font-size: 38px;
+    color: var(--primary); line-height: 1; letter-spacing: -0.02em; display: block;
+  }
+  .stat .lbl {
+    font-size: 11.5px; color: var(--muted); margin-top: 4px;
+    text-transform: uppercase; letter-spacing: 0.12em; font-weight: 500;
+  }
+  .hero .card .footer {
+    margin-top: 24px; padding-top: 18px; border-top: 1px dashed var(--rule);
+    font-size: 13.5px; color: var(--muted); line-height: 1.55;
+  }
+  .hero .card .footer .role { color: var(--primary); font-weight: 600; font-family: "Fraunces", serif; font-size: 14px; }
+
+  @media (max-width: 800px) {
+    .hero { padding: 60px 0 40px; }
+    .hero .grid { grid-template-columns: 1fr; gap: 36px; }
+  }
+
+  /* ---------- Section heads ---------- */
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 11.5px; font-weight: 600;
+    letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .eyebrow::before {
+    content: ""; width: 28px; height: 1.5px; background: var(--accent);
+  }
+  h2.section-title {
+    font-family: "Fraunces", serif; font-weight: 500;
+    font-size: clamp(30px, 4vw, 44px);
+    line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 16px;
+    color: var(--primary);
+  }
+  h2.section-title em { color: var(--accent); font-weight: 500; }
+  .section-intro { color: var(--ink-2); font-size: 17px; max-width: 720px; margin: 0 0 40px; line-height: 1.6; }
+
+  /* ---------- About ---------- */
+  .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 48px; align-items: start; }
+  .about p { font-size: 17px; line-height: 1.75; color: var(--ink-2); margin: 0 0 18px; }
+  .about p strong { color: var(--primary); }
+  .about .pull {
+    background: var(--primary-soft); border-left: 3px solid var(--accent);
+    padding: 22px; border-radius: 0 10px 10px 0;
+    font-family: "Fraunces", serif; font-style: italic;
+    font-size: 17px; line-height: 1.55; color: var(--primary);
+  }
+  .about .pull .who {
+    display: block; margin-top: 12px; font-style: normal;
+    font-family: "Inter", sans-serif; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); font-weight: 600;
+  }
+  @media (max-width: 800px) { .about-grid { grid-template-columns: 1fr; gap: 28px; } }
+
+  /* ---------- Research areas ---------- */
+  .areas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .area {
+    background: var(--panel); border-radius: 14px; padding: 28px 26px;
+    border: 1px solid var(--rule); transition: all .2s ease;
+    position: relative; overflow: hidden;
+  }
+  .area::before {
+    content: ""; position: absolute; left: 0; top: 0; height: 100%; width: 3px;
+    background: var(--accent); transform: scaleY(0); transform-origin: top;
+    transition: transform .25s ease;
+  }
+  .area:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+  .area:hover::before { transform: scaleY(1); }
+  .area .num {
+    font-family: "Fraunces", serif; font-weight: 500; font-style: italic;
+    font-size: 14px; color: var(--accent); letter-spacing: 0.05em;
+    margin-bottom: 14px; display: block;
+  }
+  .area h3 { font-family: "Fraunces", serif; font-weight: 600; font-size: 19px; margin: 0 0 10px; color: var(--primary); }
+  .area p { font-size: 14.5px; color: var(--ink-2); margin: 0; line-height: 1.6; }
+  @media (max-width: 800px) { .areas { grid-template-columns: 1fr; } }
+
+  /* ---------- Publications ---------- */
+  .pubs { display: flex; flex-direction: column; gap: 20px; }
+  .pub {
+    background: var(--panel); border: 1px solid var(--rule); border-radius: 14px;
+    padding: 24px 28px; display: grid; grid-template-columns: 80px 1fr auto; gap: 24px;
+    align-items: start; transition: all .18s ease;
+  }
+  .pub:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+  .pub .year {
+    font-family: "Fraunces", serif; font-weight: 600; font-size: 32px; color: var(--accent);
+    line-height: 1; letter-spacing: -0.02em;
+  }
+  .pub .body h3 {
+    font-family: "Fraunces", serif; font-weight: 600; font-size: 19px;
+    margin: 0 0 8px; line-height: 1.3; color: var(--primary);
+  }
+  .pub .body .authors { font-size: 14px; color: var(--ink-2); margin-bottom: 6px; }
+  .pub .body .authors .me { color: var(--accent); font-weight: 700; }
+  .pub .body .venue { font-size: 13.5px; color: var(--muted); font-style: italic; }
+  .pub .body .badges { margin-top: 10px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .pub .body .badges span {
+    font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 999px;
+    background: var(--primary-soft); color: var(--primary); letter-spacing: 0.04em;
+  }
+  .pub .body .badges .cite { background: var(--accent-soft); color: var(--accent); }
+  .pub .body .badges .q1 { background: var(--accent); color: #fff; }
+  .pub .links { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+  .pub .links a {
+    font-size: 12.5px; padding: 6px 12px; border: 1px solid var(--rule); border-radius: 999px;
+    color: var(--primary); white-space: nowrap;
+  }
+  .pub .links a:hover { border-color: var(--accent); color: var(--accent); }
+  @media (max-width: 720px) {
+    .pub { grid-template-columns: 1fr; gap: 8px; padding: 20px; }
+    .pub .links { flex-direction: row; }
+  }
+
+  /* ---------- Projects ---------- */
+  .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .project {
+    background: var(--panel); border: 1px solid var(--rule); border-radius: 14px;
+    padding: 28px; transition: all .18s ease; position: relative;
+  }
+  .project:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+  .project .tag {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 12px;
+  }
+  .project h3 { font-family: "Fraunces", serif; font-weight: 600; font-size: 23px;
+    margin: 0 0 12px; line-height: 1.2; color: var(--primary); }
+  .project p { font-size: 14.5px; color: var(--ink-2); margin: 0 0 14px; line-height: 1.6; }
+  .project ul { font-size: 14px; color: var(--ink-2); margin: 0; padding-left: 18px; }
+  .project ul li { margin-bottom: 5px; }
+  .project .stack { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .project .stack span {
+    font-size: 11.5px; padding: 4px 10px; border-radius: 6px;
+    background: var(--primary-soft); color: var(--primary); font-weight: 500;
+  }
+  @media (max-width: 800px) { .projects { grid-template-columns: 1fr; } }
+
+  /* ---------- Teaching timeline ---------- */
+  .timeline { display: flex; flex-direction: column; gap: 22px; padding-left: 6px; }
+  .role-row {
+    display: grid; grid-template-columns: 200px 1fr; gap: 28px;
+    border-left: 2px solid var(--rule); padding-left: 26px; position: relative;
+    padding-bottom: 6px;
+  }
+  .role-row::before {
+    content: ""; position: absolute; left: -8px; top: 6px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--accent); border: 3px solid var(--bg);
+  }
+  .role-row .when {
+    font-family: "Fraunces", serif; font-style: italic;
+    font-size: 14px; color: var(--accent); padding-top: 2px;
+  }
+  .role-row h4 {
+    margin: 0 0 4px; font-family: "Fraunces", serif; font-size: 19px;
+    font-weight: 600; color: var(--primary);
+  }
+  .role-row .org { font-size: 14px; color: var(--ink-2); margin-bottom: 8px; font-style: italic; }
+  .role-row p { font-size: 14.5px; color: var(--ink-2); margin: 0; line-height: 1.6; }
+  @media (max-width: 700px) { .role-row { grid-template-columns: 1fr; gap: 4px; padding-left: 20px; } }
+
+  /* ---------- Skills ---------- */
+  .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px 28px; }
+  .skill-block {
+    border-top: 1px solid var(--rule); padding-top: 14px;
+  }
+  .skill-block h4 {
+    font-family: "Fraunces", serif; font-weight: 600; font-size: 15px;
+    margin: 0 0 8px; color: var(--accent); letter-spacing: 0.01em;
+  }
+  .skill-block p { margin: 0; font-size: 14.5px; color: var(--ink-2); line-height: 1.55; }
+  .skill-block .mcp {
+    background: var(--accent-soft); color: var(--accent);
+    padding: 1px 7px; border-radius: 4px; font-weight: 600;
+  }
+  @media (max-width: 720px) { .skills-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- Contact ---------- */
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 800px;
+  }
+  .contact-card {
+    background: var(--panel); border: 1px solid var(--rule); border-radius: 14px;
+    padding: 22px 24px; transition: all .15s ease;
+  }
+  .contact-card:hover { border-color: var(--accent); }
+  .contact-card .label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  .contact-card a, .contact-card .v {
+    font-family: "Fraunces", serif; font-weight: 500; font-size: 18px;
+    color: var(--primary); display: inline-block;
+  }
+  .contact-card a:hover { color: var(--accent); }
+  @media (max-width: 600px) { .contact-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- Footer ---------- */
+  footer.site {
+    padding: 44px 24px; text-align: center;
+    border-top: 1px solid var(--rule); font-size: 13px; color: var(--muted);
+    background: var(--primary-soft);
+  }
+  footer.site a { color: var(--primary); border-bottom: 1px dotted var(--muted); }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="row">
+    <div class="brand">Yi Xia <span class="alt">· Sean</span></div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#teaching">Teaching</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero wrap">
+  <div class="grid">
+    <div>
+      <div class="eyebrow">Computer Vision · Auckland · Aotearoa</div>
+      <h1>Deep-learning systems for <span class="you">video and the real world.</span></h1>
+      <p class="lead">
+        I’m <strong>Yi Xia</strong> (Sean) — a PhD candidate at <strong>Auckland University of Technology</strong>
+        researching skeleton-based human activity recognition with graph neural networks, and an
+        <strong>AI Developer at TOHU MEDIA</strong> shipping film-industry-grade object detection and OCR.
+        Bilingual, four years of teaching behind me, and a strong bias toward shipping.
+      </p>
+      <div class="meta">
+        <span><span class="dot"></span>Tāmaki Makaurau · Auckland</span>
+        <span><span class="dot"></span>Open work rights · Post-Study Work Visa</span>
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="Yi_Xia_CV_Industry.pdf" download>Download CV — Industry</a>
+        <a class="btn ghost" href="Yi_Xia_CV_Academic.pdf" download>Academic CV</a>
+        <a class="btn ghost" href="#publications">Publications →</a>
+      </div>
+    </div>
+
+    <aside class="card">
+      <div class="stats">
+        <div class="stat"><span class="num">70+</span><span class="lbl">Citations</span></div>
+        <div class="stat"><span class="num">5+</span><span class="lbl">Peer-reviewed</span></div>
+        <div class="stat"><span class="num">4+ yrs</span><span class="lbl">Industry AI</span></div>
+        <div class="stat"><span class="num">Q1</span><span class="lbl">Pat. Recog. 2026</span></div>
+      </div>
+      <div class="footer">
+        <div class="role">Currently</div>
+        PhD candidate · Institute of Robotics &amp; Vision · AUT<br />
+        AI Developer · TOHU MEDIA · since Feb 2022
+      </div>
+    </aside>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about" class="wrap">
+  <div class="eyebrow">About</div>
+  <h2 class="section-title">Researcher who ships. <em>Engineer who reads papers.</em></h2>
+  <div class="about-grid about">
+    <div>
+      <p>
+        I started in <strong>logistics engineering</strong> in China, taught
+        <strong>computer fundamentals, IoT and Java</strong> as a junior lecturer for four years,
+        co-founded a small training school, and then moved to New Zealand in 2021 to retrain as a
+        computer-vision researcher. That mixed background — teacher, founder, engineer, researcher —
+        is now my superpower: I can explain hard ideas to anyone, hold a research roadmap in my head,
+        and still get my hands dirty in PyTorch on a Friday night.
+      </p>
+      <p>
+        My doctoral work designs <strong>frequency-aware spatio-temporal graph networks</strong> for
+        skeleton-based human activity recognition; my master’s research on real-time fruit detection
+        and tracking has racked up 50+ citations on a single paper. Outside the lab, I’ve been an
+        <strong>AI Developer at TOHU MEDIA</strong> — a Māori-owned New Zealand media-production
+        company — for over four years, building robust object-detection and OCR pipelines for
+        film-industry video, the kind of work where the test set is whatever the camera sees tomorrow.
+      </p>
+      <p>
+        Most recently I’ve been working with <strong>generative AI and agentic systems</strong>:
+        Claude / GPT integration, tool use, Model Context Protocol (MCP), and skill-based agents —
+        the next chapter of computer-vision deployment, in my view, is models that <em>act</em>, not
+        just predict.
+      </p>
+    </div>
+    <div class="pull">
+      “Models live in the lab. Systems live in the world. I want to build the second one.”
+      <span class="who">— guiding line for the next phase</span>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH AREAS -->
+<section id="research" class="wrap">
+  <div class="eyebrow">Research</div>
+  <h2 class="section-title">Three threads of <em>work.</em></h2>
+  <p class="section-intro">My research sits between deep learning, computer vision, and structured time-series — with one eye always on whether the model would survive contact with real footage.</p>
+
+  <div class="areas">
+    <div class="area">
+      <span class="num">i.</span>
+      <h3>Skeleton-based HAR</h3>
+      <p>Spatio-temporal graph convolutional networks with frequency-aware topology learning and dynamic self-attention gating. Published in <em>Pattern Recognition</em> (2026, Q1) and ICONIP (2024).</p>
+    </div>
+    <div class="area">
+      <span class="num">ii.</span>
+      <h3>Real-time detection &amp; tracking</h3>
+      <p>Improved YOLO architectures and multi-object tracking pipelines for agricultural video — kiwifruit detection / counting. Lead paper sits at 50+ citations.</p>
+    </div>
+    <div class="area">
+      <span class="num">iii.</span>
+      <h3>Applied CV in industry</h3>
+      <p>Production object-detection and OCR systems for film-industry video at TOHU MEDIA — latency, robustness, and the messy realities of real footage.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications" class="wrap">
+  <div class="eyebrow">Publications</div>
+  <h2 class="section-title">Selected <em>publications.</em></h2>
+  <p class="section-intro">
+    Reverse chronological. Names in <span style="color:var(--accent);font-weight:700;">copper</span>
+    indicate first author. Live citation counts on
+    <a href="https://scholar.google.com/citations?user=CEyoI9IAAAAJ">Google Scholar</a>.
+  </p>
+
+  <div class="pubs">
+
+    <div class="pub">
+      <div class="year">2026</div>
+      <div class="body">
+        <h3>Frequency-Aware Spatio-Temporal Topology Learning for Skeleton-Based Human Activity Recognition</h3>
+        <div class="authors"><span class="me">Y. Xia</span>, R. Lutui, S. Yongchareon, Q. Z. Sheng</div>
+        <div class="venue">Pattern Recognition (Q1, IF ≈ 7)</div>
+        <div class="badges"><span class="q1">Q1</span><span>Journal</span><span>HAR</span></div>
+      </div>
+      <div class="links">
+        <a href="https://www.sciencedirect.com/journal/pattern-recognition">Journal ↗</a>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="year">2025</div>
+      <div class="body">
+        <h3>Dynamic Self-Attention Gated Spatial-Temporal GCN for Skeleton-Based HAR</h3>
+        <div class="authors"><span class="me">Y. Xia</span>, R. Lutui, S. Yongchareon, Q. Z. Sheng</div>
+        <div class="venue">ICONIP 2024 — Springer LNCS</div>
+        <div class="badges"><span>Conference</span><span>HAR</span></div>
+      </div>
+      <div class="links">
+        <a href="https://link.springer.com/conference/iconip">Proceedings ↗</a>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="year">2023</div>
+      <div class="body">
+        <h3>Multiscale Kiwifruit Detection from Digital Images</h3>
+        <div class="authors"><span class="me">Y. Xia</span>, M. Nguyen, R. Lutui, W. Q. Yan</div>
+        <div class="venue">Pacific-Rim Symposium on Image and Video Technology (PSIVT 2023)</div>
+        <div class="badges"><span>Conference</span><span>Detection</span><span class="cite">7 citations</span></div>
+      </div>
+      <div class="links">
+        <a href="https://link.springer.com/">Springer ↗</a>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="year">2023</div>
+      <div class="body">
+        <h3>Kiwifruit Counting Using KiwiDetector and KiwiTracker</h3>
+        <div class="authors"><span class="me">Y. Xia</span>, M. Nguyen, W. Q. Yan</div>
+        <div class="venue">SAI Intelligent Systems Conference 2023 — Springer LNNS</div>
+        <div class="badges"><span>Conference</span><span>Tracking</span><span class="cite">11 citations</span></div>
+      </div>
+      <div class="links">
+        <a href="https://link.springer.com/">Springer ↗</a>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="year">2022</div>
+      <div class="body">
+        <h3>A Real-Time Kiwifruit Detection Based on Improved YOLOv7</h3>
+        <div class="authors"><span class="me">Y. Xia</span>, M. Nguyen, W. Q. Yan</div>
+        <div class="venue">37th International Conference on Image and Vision Computing New Zealand (IVCNZ 2022) — Springer LNCS</div>
+        <div class="badges"><span>Conference</span><span>YOLO</span><span class="cite">50 citations</span></div>
+      </div>
+      <div class="links">
+        <a href="https://link.springer.com/">Springer ↗</a>
+      </div>
+    </div>
+
+  </div>
+
+  <p style="margin-top:28px;font-size:14px;color:var(--muted);">
+    Full and live list (with citation counts) on
+    <a href="https://scholar.google.com/citations?user=CEyoI9IAAAAJ">Google Scholar</a>.
+  </p>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="wrap">
+  <div class="eyebrow">Projects</div>
+  <h2 class="section-title">Things I've <em>built.</em></h2>
+  <p class="section-intro">A selection of research projects and industry work, with the technical stack at the bottom.</p>
+
+  <div class="projects">
+
+    <div class="project">
+      <div class="tag">PhD · 2024–2026</div>
+      <h3>FATL-GCN — Frequency-Aware Spatio-Temporal Topology Learning</h3>
+      <p>A graph-convolutional architecture for skeleton-based human activity recognition that learns topology jointly in the spatial and frequency domains.</p>
+      <ul>
+        <li>Outperforms prior SOTA on NTU RGB+D 60 / 120 benchmarks.</li>
+        <li>Accepted at <em>Pattern Recognition</em> (Q1 journal, IF ≈ 7).</li>
+      </ul>
+      <div class="stack"><span>PyTorch</span><span>GCN</span><span>Skeleton HAR</span><span>NTU RGB+D</span></div>
+    </div>
+
+    <div class="project">
+      <div class="tag">PhD · 2023–2024</div>
+      <h3>Dynamic Self-Attention Gated ST-GCN</h3>
+      <p>Spatial-temporal GCN with a learned gating mechanism that decides how much spatial vs. temporal context to use per joint, per frame.</p>
+      <ul>
+        <li>Presented at ICONIP 2024.</li>
+        <li>Improves robustness on cross-subject and cross-view splits.</li>
+      </ul>
+      <div class="stack"><span>PyTorch</span><span>Attention</span><span>ST-GCN</span></div>
+    </div>
+
+    <div class="project">
+      <div class="tag">Industry · TOHU MEDIA · since Feb 2022</div>
+      <h3>Film-industry video CV pipeline</h3>
+      <p>Object-detection and OCR systems running on production video footage for a Māori-owned New Zealand media-production company. Owned end-to-end: data, training, inference, iteration.</p>
+      <ul>
+        <li>Part-time Feb 2022 – May 2025; full-time since June 2025.</li>
+        <li>Robust to scene change, lighting, motion blur, real-world variability.</li>
+      </ul>
+      <div class="stack"><span>PyTorch</span><span>OpenCV</span><span>YOLO</span><span>OCR</span><span>Video</span></div>
+    </div>
+
+    <div class="project">
+      <div class="tag">Master's · 2022–2023</div>
+      <h3>KiwiDetector + KiwiTracker</h3>
+      <p>Improved YOLOv7-based detector and tracker for real-time kiwifruit detection and counting in orchard video — built with NZ fruit-industry imagery.</p>
+      <ul>
+        <li>Lead paper has <strong>50+ citations</strong>.</li>
+        <li>Three peer-reviewed papers across IVCNZ, SAI Intelligent Systems, PSIVT.</li>
+      </ul>
+      <div class="stack"><span>PyTorch</span><span>YOLOv7</span><span>Tracking</span><span>Real-time</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="wrap">
+  <div class="eyebrow">Skills</div>
+  <h2 class="section-title">Toolchain &amp; <em>methods.</em></h2>
+  <p class="section-intro">The kit I reach for daily — research, production, and increasingly the agentic stack.</p>
+
+  <div class="skills-grid">
+    <div class="skill-block">
+      <h4>Programming</h4>
+      <p>Python (expert · 8+ years) · Java (taught for 4 years).</p>
+    </div>
+    <div class="skill-block">
+      <h4>Deep-learning frameworks</h4>
+      <p>PyTorch (primary) · TensorFlow / Keras · Hugging Face.</p>
+    </div>
+    <div class="skill-block">
+      <h4>Computer vision</h4>
+      <p>Object detection (YOLO family) · tracking · OCR · segmentation · skeleton-based HAR · GCN · attention / Transformers · frequency-domain analysis.</p>
+    </div>
+    <div class="skill-block">
+      <h4>Scientific stack</h4>
+      <p>OpenCV · scikit-learn · NumPy · pandas · SciPy · Matplotlib.</p>
+    </div>
+    <div class="skill-block">
+      <h4>Generative AI &amp; agents</h4>
+      <p>Claude / GPT API integration · agentic workflows · <span class="mcp">Model Context Protocol (MCP)</span> · agent skills · tool-use &amp; function calling · prompt engineering.</p>
+    </div>
+    <div class="skill-block">
+      <h4>Tooling</h4>
+      <p>Git / GitHub · Linux · CUDA · Jupyter · LaTeX · Microsoft 365.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHING -->
+<section id="teaching" class="wrap">
+  <div class="eyebrow">Teaching &amp; service</div>
+  <h2 class="section-title">Eight years in front of <em>a class.</em></h2>
+  <p class="section-intro">Teaching shaped how I work. I learned to break ideas down, to listen for the question behind the question, and to build curricula that survive a noisy room of tired students at 4 pm.</p>
+
+  <div class="timeline">
+
+    <div class="role-row">
+      <div class="when">2022 – present</div>
+      <div>
+        <h4>Teaching Assistant</h4>
+        <div class="org">School of Engineering, Computer &amp; Mathematical Sciences · AUT</div>
+        <p>TA on multiple undergraduate computer-science courses. Run labs, mark, hold consultations, mentor on assignments and final-year projects.</p>
+      </div>
+    </div>
+
+    <div class="role-row">
+      <div class="when">Nov 2022 – Jul 2023</div>
+      <div>
+        <h4>Research Assistant (multiple appointments)</h4>
+        <div class="org">School of Engineering, Computer &amp; Mathematical Sciences · AUT</div>
+        <p>AUT Summer Research Assistant Scholarship (2022) and SECMS Research Assistant Fund (2023). Worked on the kiwifruit detection / counting research line.</p>
+      </div>
+    </div>
+
+    <div class="role-row">
+      <div class="when">2019 – 2021</div>
+      <div>
+        <h4>Co-Founder</h4>
+        <div class="org">Baiyin Pinuo Training School · China</div>
+        <p>Co-founded a private supplementary-education school. Built curriculum and led day-to-day academic operations.</p>
+      </div>
+    </div>
+
+    <div class="role-row">
+      <div class="when">2015 – 2019</div>
+      <div>
+        <h4>Junior Lecturer</h4>
+        <div class="org">Department of Information Engineering · Baiyin Vocational &amp; Technology College</div>
+        <p>Taught Computer Fundamentals, Java, IoT applications and RFID technologies to ~120 students per year over four academic years.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="wrap">
+  <div class="eyebrow">Contact</div>
+  <h2 class="section-title">Let's <em>talk.</em></h2>
+  <p class="section-intro">I'm looking for AI / machine-learning roles in New Zealand — industry or academic. Open to coffee in Auckland or a quick video call. Happy to share a paper PDF or talk shop.</p>
+
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="label">Email</div>
+      <a href="mailto:xiayi.shawn.001@gmail.com">xiayi.shawn.001@gmail.com</a>
+    </div>
+    <div class="contact-card">
+      <div class="label">Phone</div>
+      <span class="v">+64 27 368 7961</span>
+    </div>
+    <div class="contact-card">
+      <div class="label">LinkedIn</div>
+      <a href="https://www.linkedin.com/in/yi-xia-571a83267">linkedin.com/in/yi-xia</a>
+    </div>
+    <div class="contact-card">
+      <div class="label">Google Scholar</div>
+      <a href="https://scholar.google.com/citations?user=CEyoI9IAAAAJ">scholar profile ↗</a>
+    </div>
+    <div class="contact-card">
+      <div class="label">AUT page</div>
+      <a href="https://academics.aut.ac.nz/yi.xia/publications">academics.aut.ac.nz/yi.xia ↗</a>
+    </div>
+    <div class="contact-card">
+      <div class="label">Location</div>
+      <span class="v">Tāmaki Makaurau · Auckland, NZ</span>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  © 2026 Yi (Sean) Xia. Built by hand in HTML and CSS — no frameworks. Hosted on
+  <a href="https://pages.github.com/">GitHub Pages</a>.
+</footer>
+
+<script>
+  // Highlight nav link on scroll (no library)
+  const links = document.querySelectorAll('nav.top a');
+  const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  function onScroll() {
+    const y = window.scrollY + 120;
+    let active = sections[0];
+    for (const s of sections) { if (s.offsetTop <= y) active = s; }
+    links.forEach(l => l.style.color = '');
+    const match = [...links].find(l => l.getAttribute('href') === '#' + (active && active.id));
+    if (match) match.style.color = 'var(--accent)';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+
+</body>
+</html>
