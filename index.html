@@ -262,7 +262,7 @@
   }
   @media (max-width: 800px) { .projects { grid-template-columns: 1fr; } }
 
-  /* ---------- Teaching timeline ---------- */
+  /* ---------- Experience timeline ---------- */
   .timeline { display: flex; flex-direction: column; gap: 22px; padding-left: 6px; }
   .role-row {
     display: grid; grid-template-columns: 200px 1fr; gap: 28px;
@@ -296,10 +296,6 @@
     margin: 0 0 8px; color: var(--accent); letter-spacing: 0.01em;
   }
   .skill-block p { margin: 0; font-size: 14.5px; color: var(--ink-2); line-height: 1.55; }
-  .skill-block .mcp {
-    background: var(--accent-soft); color: var(--accent);
-    padding: 1px 7px; border-radius: 4px; font-weight: 600;
-  }
   @media (max-width: 720px) { .skills-grid { grid-template-columns: 1fr; } }
 
   /* ---------- Contact ---------- */
@@ -494,7 +490,7 @@
       <li><a href="#research">Research</a></li>
       <li><a href="#publications">Publications</a></li>
       <li><a href="#projects">Projects</a></li>
-      <li><a href="#teaching">Teaching</a></li>
+      <li><a href="#experience">Experience</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -509,7 +505,8 @@
       <p class="lead">
         I’m <strong>Yi Xia</strong> (Sean) — a PhD candidate at <strong>Auckland University of Technology</strong>
         researching skeleton-based human activity recognition with graph neural networks, and an
-        <strong>AI Developer at TOHU MEDIA</strong> shipping film-industry-grade object detection and OCR.
+        <strong>AI Developer at TOHU MEDIA</strong> shipping object-detection and OCR systems for
+        film-industry video footage.
         Bilingual, four years of teaching behind me, and a strong bias toward shipping.
       </p>
       <div class="meta">
@@ -563,7 +560,7 @@
       </p>
       <p>
         Most recently I’ve been working with <strong>generative AI and agentic systems</strong>:
-        Claude / GPT integration, tool use, Model Context Protocol (MCP), and skill-based agents —
+        Claude / GPT API integration, agentic workflows, tool use and skill-based agents —
         the next chapter of computer-vision deployment, in my view, is models that <em>act</em>, not
         just predict.
       </p>
@@ -718,12 +715,13 @@
     <div class="project">
       <div class="tag">Industry · TOHU MEDIA · since Feb 2022</div>
       <h3>Film-industry video CV pipeline</h3>
-      <p>Object-detection and OCR systems running on production video footage for a Māori-owned New Zealand media-production company. Owned end-to-end: data, training, inference, iteration.</p>
+      <p>Object-detection and OCR systems for a Māori-owned New Zealand media-production company, operating on client video footage inside internal production pipelines (specific deliverables under NDA). Owned end-to-end: dataset, training, inference, iteration.</p>
       <ul>
         <li>Part-time Feb 2022 – May 2025; full-time since June 2025.</li>
-        <li>Robust to scene change, lighting, motion blur, real-world variability.</li>
+        <li>Engineered for the messy edge cases off-the-shelf models stumble on — variable cinematography, dense overlay text, archival-grade material, long-form takes.</li>
+        <li>Docker-packaged inference deployed to the company's cloud GPU servers; iterated with editors and the creative director on what "useful output" means in their workflow.</li>
       </ul>
-      <div class="stack"><span>PyTorch</span><span>OpenCV</span><span>YOLO</span><span>OCR</span><span>Video</span></div>
+      <div class="stack"><span>PyTorch</span><span>OpenCV</span><span>YOLO</span><span>OCR</span><span>Docker</span><span>Cloud GPU</span></div>
     </div>
 
     <div class="project">
@@ -757,7 +755,7 @@
     </div>
     <div class="skill-block">
       <h4>Computer vision</h4>
-      <p>Object detection (YOLO family) · tracking · OCR · segmentation · skeleton-based HAR · GCN · attention / Transformers · frequency-domain analysis.</p>
+      <p>Object detection (YOLO family) · tracking · action recognition · OCR · semantic / instance segmentation · skeleton-based HAR · GCN · attention / Transformers · frequency-domain analysis.</p>
     </div>
     <div class="skill-block">
       <h4>Scientific stack</h4>
@@ -765,22 +763,44 @@
     </div>
     <div class="skill-block">
       <h4>Generative AI &amp; agents</h4>
-      <p>Claude / GPT API integration · agentic workflows · <span class="mcp">Model Context Protocol (MCP)</span> · agent skills · tool-use &amp; function calling · prompt engineering.</p>
+      <p>Claude / GPT API integration · agentic workflows · agent skills · tool-use &amp; function calling · prompt engineering.</p>
+    </div>
+    <div class="skill-block">
+      <h4>Deployment</h4>
+      <p>Docker · containerized model inference on cloud-hosted GPU servers.</p>
     </div>
     <div class="skill-block">
       <h4>Tooling</h4>
-      <p>Git / GitHub · Linux · CUDA · Jupyter · LaTeX · Microsoft 365.</p>
+      <p>Git / GitHub · Linux · CUDA · Jupyter.</p>
     </div>
   </div>
 </section>
 
-<!-- TEACHING -->
-<section id="teaching" class="wrap">
-  <div class="eyebrow">Teaching &amp; service</div>
-  <h2 class="section-title">Eight years in front of <em>a class.</em></h2>
-  <p class="section-intro">Teaching shaped how I work. I learned to break ideas down, to listen for the question behind the question, and to build curricula that survive a noisy room of tired students at 4 pm.</p>
+<!-- EXPERIENCE -->
+<section id="experience" class="wrap">
+  <div class="eyebrow">Experience</div>
+  <h2 class="section-title">Where I work, and <em>where I've been.</em></h2>
+  <p class="section-intro">Reverse chronological. The TOHU MEDIA work and the AUT doctorate are what I do day-to-day; the rest of the timeline is the foundation that got me here.</p>
 
   <div class="timeline">
+
+    <div class="role-row">
+      <div class="when">Feb 2022 – present</div>
+      <div>
+        <h4>Artificial Intelligence Developer</h4>
+        <div class="org">TOHU MEDIA · Tāmaki Makaurau / Auckland · full-time since Jun 2025</div>
+        <p>AI engineer at a Māori-owned media-production company — design and ship object-detection and OCR systems on film-industry video footage (specific deliverables under NDA). Own the full ML lifecycle: dataset curation, PyTorch training, Docker-packaged inference deployed on the company's cloud GPU servers, and iteration with editors and the creative director.</p>
+      </div>
+    </div>
+
+    <div class="role-row">
+      <div class="when">Oct 2023 – present</div>
+      <div>
+        <h4>PhD Researcher</h4>
+        <div class="org">Institute of Robotics &amp; Vision · AUT · Auckland</div>
+        <p>Designing FATL-GCN — a frequency-aware spatio-temporal graph network for skeleton-based human activity recognition. Lead paper accepted at <em>Pattern Recognition</em> (Q1, IF&nbsp;=&nbsp;7.6) in 2026. Supervised by Dr Raymond Lutui (primary) and Assoc. Prof. Sira Yongchareon.</p>
+      </div>
+    </div>
 
     <div class="role-row">
       <div class="when">2022 – present</div>
@@ -805,7 +825,7 @@
       <div>
         <h4>Co-Founder</h4>
         <div class="org">Baiyin Pinuo Training School · China</div>
-        <p>Co-founded a private supplementary-education school. Built curriculum and led day-to-day academic operations.</p>
+        <p>Co-founded a private supplementary-education school. Built curriculum and led day-to-day academic operations. Divested in 2021 to relocate to New Zealand for postgraduate study; the school remains in operation under my co-founder.</p>
       </div>
     </div>
 

@@ -14,11 +14,23 @@ Design system:
 
 ## Sections
 
-- Hero — name, role, location
+- Hero — name, role, location, **Download CV (Industry / Academic) buttons**
 - About — research focus and current work
+- Research areas — three threads of work (HAR, real-time detection, applied CV)
 - Publications — peer-reviewed papers with links to Google Scholar
 - Projects — selected research and applied work
+- Skills — technical stack
+- Experience — reverse-chronological timeline (TOHU MEDIA, PhD, TA, RA, Co-Founder, Junior Lecturer)
 - Contact — email, LinkedIn, Google Scholar
+
+## Files in this folder
+
+- `index.html` — the website
+- `Yi_Xia_CV_Industry.pdf` — wired to the primary "Download CV" button
+- `Yi_Xia_CV_Academic.pdf` — wired to the secondary "Academic CV" button
+- `Yi_Xia_CV_Industry_ATS.pdf` — ATS-friendly version, available at the
+  direct URL `/Yi_Xia_CV_Industry_ATS.pdf` (not advertised in hero, share
+  this directly when applying through Workday/Greenhouse/Lever/Taleo).
 
 ## Local preview
 
