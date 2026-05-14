@@ -12,21 +12,21 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; }
   :root {
-    --primary: #1c3057;        /* deep midnight blue */
-    --primary-2: #2a467c;
-    --primary-soft: #e9eef5;
-    --accent: #a36037;         /* warm copper */
-    --accent-2: #c87a4d;
-    --accent-soft: #f3ead8;
+    --primary: #1f3a2e;        /* British racing green */
+    --primary-2: #2c4e3d;
+    --primary-soft: #e6eee8;
+    --accent: #b08d4e;         /* aged brass */
+    --accent-2: #cca468;
+    --accent-soft: #f1ead7;
     --ink: #15181f;
     --ink-2: #2c3442;
     --muted: #6b7180;
     --muted-2: #8e94a3;
-    --bg: #fdfbf3;             /* warm paper */
+    --bg: #faf7ef;             /* warm vellum */
     --panel: #ffffff;
-    --rule: #e3dccb;
-    --shadow: 0 8px 30px rgba(28, 48, 87, 0.08);
-    --shadow-lg: 0 18px 50px rgba(28, 48, 87, 0.12);
+    --rule: #dfd9c0;
+    --shadow: 0 8px 30px rgba(31, 58, 46, 0.08);
+    --shadow-lg: 0 18px 50px rgba(31, 58, 46, 0.12);
   }
   html { scroll-behavior: smooth; }
   body {
@@ -45,7 +45,7 @@
   /* ---------- Nav ---------- */
   nav.top {
     position: sticky; top: 0; z-index: 50;
-    background: rgba(253, 251, 243, 0.88);
+    background: rgba(250, 247, 239, 0.88);
     backdrop-filter: saturate(160%) blur(12px);
     -webkit-backdrop-filter: saturate(160%) blur(12px);
     border-bottom: 1px solid var(--rule);
@@ -69,7 +69,7 @@
   .hero::before {
     content: ""; position: absolute; top: -200px; right: -200px;
     width: 600px; height: 600px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(163,96,55,0.12), transparent 60%);
+    background: radial-gradient(circle, rgba(176, 141, 78, 0.14), transparent 60%);
     z-index: 0;
   }
   .hero .grid {
@@ -108,7 +108,7 @@
     transition: all .18s ease; letter-spacing: 0.01em;
   }
   .btn.primary { background: var(--primary); color: #fff; }
-  .btn.primary:hover { background: var(--primary-2); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(28,48,87,0.25); }
+  .btn.primary:hover { background: var(--primary-2); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(31, 58, 46, 0.28); }
   .btn.accent { background: var(--accent); color: #fff; }
   .btn.accent:hover { background: var(--accent-2); transform: translateY(-1px); }
   .btn.ghost { background: transparent; color: var(--primary); border: 1.5px solid var(--rule); }
@@ -406,8 +406,8 @@
   /* Sticky nav — shadow when scrolled past hero */
   nav.top { transition: box-shadow .35s ease, background-color .35s ease; }
   nav.top.is-stuck {
-    box-shadow: 0 6px 24px rgba(28, 48, 87, 0.06);
-    background: rgba(253, 251, 243, 0.94);
+    box-shadow: 0 6px 24px rgba(31, 58, 46, 0.07);
+    background: rgba(250, 247, 239, 0.94);
   }
 
   /* Nav link — drawn copper underline for active section */
@@ -467,9 +467,9 @@
 
   /* Timeline dot — pulse on first reveal */
   @keyframes dotPulse {
-    0%   { transform: scale(1);    box-shadow: 0 0 0 0 rgba(163, 96, 55, 0.40); }
-    50%  { transform: scale(1.18); box-shadow: 0 0 0 7px rgba(163, 96, 55, 0); }
-    100% { transform: scale(1);    box-shadow: 0 0 0 0 rgba(163, 96, 55, 0); }
+    0%   { transform: scale(1);    box-shadow: 0 0 0 0 rgba(176, 141, 78, 0.42); }
+    50%  { transform: scale(1.18); box-shadow: 0 0 0 7px rgba(176, 141, 78, 0); }
+    100% { transform: scale(1);    box-shadow: 0 0 0 0 rgba(176, 141, 78, 0); }
   }
   @media (prefers-reduced-motion: no-preference) {
     .role-row.is-visible::before {
