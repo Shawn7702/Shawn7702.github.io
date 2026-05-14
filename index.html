@@ -298,6 +298,30 @@
   .skill-block p { margin: 0; font-size: 14.5px; color: var(--ink-2); line-height: 1.55; }
   @media (max-width: 720px) { .skills-grid { grid-template-columns: 1fr; } }
 
+  /* ---------- Service ---------- */
+  .service-list { display: flex; flex-direction: column; gap: 14px; }
+  .service-item {
+    background: var(--panel); border: 1px solid var(--rule); border-radius: 14px;
+    padding: 22px 26px;
+    display: grid; grid-template-columns: 130px 1fr; gap: 26px;
+    align-items: start; transition: all .18s ease;
+  }
+  .service-item:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+  .service-item .when {
+    font-family: "Fraunces", serif; font-style: italic;
+    font-size: 14px; color: var(--accent); padding-top: 2px;
+  }
+  .service-item h4 {
+    font-family: "Fraunces", serif; font-weight: 600; font-size: 17px;
+    margin: 0 0 4px; line-height: 1.3; color: var(--primary);
+  }
+  .service-item .meta {
+    font-size: 13.5px; color: var(--muted); font-style: italic;
+  }
+  @media (max-width: 700px) {
+    .service-item { grid-template-columns: 1fr; gap: 4px; }
+  }
+
   /* ---------- Contact ---------- */
   .contact-grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 800px;
@@ -348,6 +372,7 @@
   .js .projects > .project,
   .js .skills-grid > .skill-block,
   .js .timeline > .role-row,
+  .js .service-list > .service-item,
   .js .contact-grid > .contact-card,
   .js .about-grid > div {
     opacity: 0;
@@ -468,6 +493,7 @@
     .js .projects > .project,
     .js .skills-grid > .skill-block,
     .js .timeline > .role-row,
+    .js .service-list > .service-item,
     .js .contact-grid > .contact-card,
     .js .about-grid > div {
       opacity: 1 !important;
@@ -491,6 +517,7 @@
       <li><a href="#publications">Publications</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#experience">Experience</a></li>
+      <li><a href="#service">Service</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -523,7 +550,7 @@
     <aside class="card">
       <div class="stats">
         <div class="stat"><span class="num" data-target="70" data-suffix="+">70+</span><span class="lbl">Citations</span></div>
-        <div class="stat"><span class="num" data-target="5" data-suffix="+">5+</span><span class="lbl">Peer-reviewed</span></div>
+        <div class="stat"><span class="num" data-target="6" data-suffix="+">6+</span><span class="lbl">Peer-reviewed</span></div>
         <div class="stat"><span class="num" data-target="4" data-suffix="+ yrs">4+ yrs</span><span class="lbl">Industry AI</span></div>
         <div class="stat"><span class="num">Q1</span><span class="lbl">Pat. Recog. 2026</span></div>
       </div>
@@ -613,12 +640,12 @@
       <div class="year">2026</div>
       <div class="body">
         <h3>Frequency-Aware Spatio-Temporal Topology Learning for Skeleton-Based Human Activity Recognition</h3>
-        <div class="authors"><span class="me">Y. Xia</span>, R. Lutui, S. Yongchareon, Q. Z. Sheng</div>
+        <div class="authors"><span class="me">Y. Xia</span>, S. Yongchareon, R. Lutui, Q. Z. Sheng</div>
         <div class="venue">Pattern Recognition (Q1, IF = 7.6)</div>
         <div class="badges"><span class="q1">Q1</span><span>Journal</span><span>HAR</span></div>
       </div>
       <div class="links">
-        <a href="https://www.sciencedirect.com/journal/pattern-recognition">Journal ↗</a>
+        <a href="https://doi.org/10.1016/j.patcog.2026.113146">Article ↗</a>
       </div>
     </div>
 
@@ -626,12 +653,25 @@
       <div class="year">2025</div>
       <div class="body">
         <h3>Dynamic Self-Attention Gated Spatial-Temporal GCN for Skeleton-Based HAR</h3>
-        <div class="authors"><span class="me">Y. Xia</span>, R. Lutui, S. Yongchareon, Q. Z. Sheng</div>
+        <div class="authors"><span class="me">Y. Xia</span>, S. Yongchareon, R. Lutui, Q. Z. Sheng</div>
         <div class="venue">ICONIP 2024 — Springer LNCS</div>
         <div class="badges"><span>Conference</span><span>HAR</span></div>
       </div>
       <div class="links">
-        <a href="https://link.springer.com/conference/iconip">Proceedings ↗</a>
+        <a href="https://doi.org/10.1007/978-981-96-6588-4_14">Article ↗</a>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="year">2025</div>
+      <div class="body">
+        <h3>An Improved YOLO Model for Kiwifruit Detection</h3>
+        <div class="authors"><span class="me">Y. Xia</span>, M. Nguyen, W. Q. Yan</div>
+        <div class="venue">Optimization, Machine Learning, and Fuzzy Logic — IGI Global book chapter</div>
+        <div class="badges"><span>Book chapter</span><span>YOLO</span><span>Detection</span></div>
+      </div>
+      <div class="links">
+        <a href="https://doi.org/10.4018/979-8-3693-7352-1.ch008">Article ↗</a>
       </div>
     </div>
 
@@ -644,7 +684,7 @@
         <div class="badges"><span>Conference</span><span>Detection</span><span class="cite">7 citations</span></div>
       </div>
       <div class="links">
-        <a href="https://link.springer.com/">Springer ↗</a>
+        <a href="https://doi.org/10.1007/978-981-97-0376-0_7">Article ↗</a>
       </div>
     </div>
 
@@ -657,7 +697,7 @@
         <div class="badges"><span>Conference</span><span>Tracking</span><span class="cite">11 citations</span></div>
       </div>
       <div class="links">
-        <a href="https://link.springer.com/">Springer ↗</a>
+        <a href="https://doi.org/10.1007/978-3-031-47724-9_41">Article ↗</a>
       </div>
     </div>
 
@@ -670,7 +710,7 @@
         <div class="badges"><span>Conference</span><span>YOLO</span><span class="cite">50 citations</span></div>
       </div>
       <div class="links">
-        <a href="https://link.springer.com/">Springer ↗</a>
+        <a href="https://doi.org/10.1007/978-3-031-25825-1_4">Article ↗</a>
       </div>
     </div>
 
@@ -841,6 +881,41 @@
   </div>
 </section>
 
+<!-- SERVICE -->
+<section id="service" class="wrap">
+  <div class="eyebrow">Service</div>
+  <h2 class="section-title">Peer review &amp; <em>academic service.</em></h2>
+  <p class="section-intro">Reviewer for international journals and conferences in multimedia computing, applied sensing, and wireless communications.</p>
+
+  <div class="service-list">
+
+    <div class="service-item">
+      <div class="when">2025, 2026</div>
+      <div>
+        <h4>International Agrophysics</h4>
+        <div class="meta">Journal · Institute of Agrophysics, Polish Academy of Sciences</div>
+      </div>
+    </div>
+
+    <div class="service-item">
+      <div class="when">2026</div>
+      <div>
+        <h4>IEEE International Symposium on Personal, Indoor and Mobile Radio Communications (PIMRC)</h4>
+        <div class="meta">Conference · IEEE Communications Society</div>
+      </div>
+    </div>
+
+    <div class="service-item">
+      <div class="when">2024</div>
+      <div>
+        <h4>ACM Transactions on Multimedia Computing, Communications, and Applications (TOMM)</h4>
+        <div class="meta">Journal · Association for Computing Machinery</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact" class="wrap">
   <div class="eyebrow">Contact</div>
@@ -922,13 +997,13 @@
     '.hero .eyebrow', '.hero h1', '.hero .lead', '.hero .meta', '.hero .cta', '.hero .card',
     'section > .eyebrow', 'section .section-title', 'section .section-intro',
     '.areas > .area', '.pubs > .pub', '.projects > .project',
-    '.skills-grid > .skill-block', '.timeline > .role-row', '.contact-grid > .contact-card',
-    '.about-grid > div'
+    '.skills-grid > .skill-block', '.timeline > .role-row', '.service-list > .service-item',
+    '.contact-grid > .contact-card', '.about-grid > div'
   ].join(', ');
   const revealEls = document.querySelectorAll(revealSelector);
 
   // Stagger grid children (skip hero — handled by CSS delays)
-  ['.areas', '.pubs', '.projects', '.skills-grid', '.timeline', '.contact-grid'].forEach(sel => {
+  ['.areas', '.pubs', '.projects', '.skills-grid', '.timeline', '.service-list', '.contact-grid'].forEach(sel => {
     document.querySelectorAll(sel).forEach(parent => {
       Array.from(parent.children).forEach((child, i) => {
         child.style.transitionDelay = (i * 70) + 'ms';
