@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="8" fill="#101a2d"/>
+  <path d="M8 20V8h12M44 8h12v12M56 44v12H44M20 56H8V44" fill="none" stroke="#9bc53d" stroke-width="4"/>
+  <text x="32" y="38" fill="#fff" font-family="Arial,sans-serif" font-size="18" font-weight="700" text-anchor="middle">YX</text>
+</svg>

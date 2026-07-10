@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f5f7fa"/>
+  <defs><pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" fill="none" stroke="#2058d5" stroke-opacity=".08"/></pattern></defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect x="62" y="54" width="1076" height="522" fill="#101a2d"/>
+  <path d="M94 138V88h50M1056 88h50v50M1106 492v50h-50M144 542H94v-50" fill="none" stroke="#9bc53d" stroke-width="6"/>
+  <text x="116" y="133" fill="#9bc53d" font-family="Consolas,monospace" font-size="19" letter-spacing="3">AUCKLAND / APPLIED AI / LIVE</text>
+  <text x="116" y="238" fill="#fff" font-family="Arial,sans-serif" font-size="70" font-weight="700">Yi (Sean) Xia</text>
+  <text x="116" y="316" fill="#aeb8cb" font-family="Arial,sans-serif" font-size="34">Applied AI &amp; ML Software Engineer</text>
+  <text x="116" y="408" fill="#fff" font-family="Arial,sans-serif" font-size="37" font-weight="700">From difficult data to useful AI systems.</text>
+  <text x="116" y="479" fill="#aeb8cb" font-family="Consolas,monospace" font-size="19">COMPUTER VISION  ·  PRIVATE LLMs  ·  DEPLOYMENT</text>
+  <circle cx="1034" cy="458" r="9" fill="#9bc53d"/><circle cx="1065" cy="458" r="9" fill="#2058d5"/><circle cx="1096" cy="458" r="9" fill="#fff"/>
+</svg>

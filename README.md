@@ -1,41 +1,22 @@
-# Yi (Sean) Xia — Personal Website
+# Yi (Sean) Xia - Personal Website
 
-Single-page personal website for **Yi (Sean) Xia**, PhD candidate in computer vision and human activity recognition at Auckland University of Technology, and AI Developer at TOHU MEDIA.
+Recruiter-first portfolio for an Auckland-based Applied AI and ML Software Engineer.
 
-**Live site**: https://&lt;your-username&gt;.github.io/
+Live site: https://shawn7702.github.io/
 
-## About
+## Positioning
 
-Static site built with plain HTML and CSS — no build step, no dependencies beyond Google Fonts (Fraunces + Inter). Hosted on GitHub Pages.
+- Primary audience: New Zealand AI/ML hiring managers and recruiters.
+- Primary action: download the two-page human-facing `Yi_Xia_CV.pdf`.
+- Secondary downloads: `Yi_Xia_CV_ATS.pdf` for application portals and `Yi_Xia_CV_Academic.pdf` for academic/research roles.
 
-Design system:
-- Deep midnight blue `#1c3057` and warm copper `#a36037` on warm-paper background
-- Fraunces (serif display) and Inter (sans body)
+## Files
 
-## Sections
+- `index.html` - framework-free responsive site.
+- `Yi_Xia_CV.pdf` - primary public CV.
+- `Yi_Xia_CV_ATS.pdf` - parser-safe ATS CV.
+- `Yi_Xia_CV_Academic.pdf` - academic and research CV.
+- `social-card.png` - social sharing image, generated from `social-card.svg`.
+- `favicon.svg`, `robots.txt`, `sitemap.xml` - discovery and identity assets.
 
-- Hero — name, role, location, **Download CV (Industry / Academic) buttons**
-- About — research focus and current work
-- Research areas — three threads of work (HAR, real-time detection, applied CV)
-- Publications — peer-reviewed papers with links to Google Scholar
-- Projects — selected research and applied work
-- Skills — technical stack
-- Experience — reverse-chronological timeline (TOHU MEDIA, PhD, TA, RA, Co-Founder, Junior Lecturer)
-- Contact — email, LinkedIn, Google Scholar
-
-## Files in this folder
-
-- `index.html` — the website
-- `Yi_Xia_CV_Industry.pdf` — wired to the primary "Download CV" button
-- `Yi_Xia_CV_Academic.pdf` — wired to the secondary "Academic CV" button
-- `Yi_Xia_CV_Industry_ATS.pdf` — ATS-friendly version, available at the
-  direct URL `/Yi_Xia_CV_Industry_ATS.pdf` (not advertised in hero, share
-  this directly when applying through Workday/Greenhouse/Lever/Taleo).
-
-## Local preview
-
-Just open `index.html` in any modern browser. No server needed.
-
-## License
-
-Content © Yi Xia. Code available for reference under MIT.
+Legacy PDF filenames are kept as aliases so old links do not break.
