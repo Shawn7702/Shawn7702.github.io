@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ESA-GCN · ICONIP 2026</title>
+<meta name="description" content="ESA-GCN: Efficient Semantic-Aware Graph Convolution for Skeleton-Based Action Recognition. Accepted at ICONIP 2026, poster #53. Yi Xia, Sira Yongchareon, Raymond Lutui, Auckland University of Technology.">
+<link rel="canonical" href="https://shawn7702.github.io/esa-gcn/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ESA-GCN · ICONIP 2026">
+<meta property="og:description" content="Multiply, don’t add. Learn ε, don’t search it. Two compact modules beat a retrained LA-GCN on all 25 results for at most 2.6% more parameters.">
+<meta property="og:url" content="https://shawn7702.github.io/esa-gcn/">
+<meta property="og:image" content="https://shawn7702.github.io/esa-gcn/poster_preview.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d1b3e'/%3E%3Cpath d='M22 17v30M22 17h21M22 32h16M22 47h21' stroke='%23fff' stroke-width='6' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0d1b3e; --navy2: #1e3a6e; --blue: #1a56db; --sky: #60a5fa; --ice: #bfdbfe; --pale: #e8f0fe;
+  --ink: #0d1b3e; --ink2: #374151; --muted: #5b6b82; --line: #d5deec; --soft: #f5f8fd;
+  --amber: #d97706; --amberd: #92400e; --amberp: #fdf6ea;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: #fff; color: var(--ink2); font: 400 17px/1.62 Inter, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+a { color: var(--blue); }
+a:focus-visible, .btn:focus-visible { outline: 3px solid var(--sky); outline-offset: 2px; }
+.wrap { max-width: 1000px; margin: 0 auto; padding: 0 16px; }
+@media (min-width: 720px) { .wrap { padding: 0 28px; } }
+
+/* hero */
+.hero { position: relative; overflow: hidden; color: #fff; padding: 34px 0 30px;
+  background: linear-gradient(115deg, #0a1533 0%, #0d1b3e 45%, #1a3668 100%); }
+.hero .art { position: absolute; right: 2%; top: 28px; width: 400px; opacity: .3; pointer-events: none; }
+.hero .art svg { width: 100%; height: auto; display: block; }
+@media (max-width: 520px) { .badge { font-size: 13px; } }
+@media (max-width: 760px) { .hero .art { width: 290px; right: -70px; top: auto; bottom: -6px; opacity: .14; } }
+.hero .wrap { position: relative; }
+.badge { display: inline-flex; align-items: center; gap: 10px; margin: 0; padding: 4px 14px 4px 4px; border: 1px solid rgba(255,255,255,.25);
+  border-radius: 999px; background: rgba(255,255,255,.07); font-size: 14px; font-weight: 500; color: var(--ice); }
+.badge b { white-space: nowrap; background: var(--sky); color: var(--navy); border-radius: 999px; padding: 2px 10px; font-weight: 700; }
+h1 { font-family: Montserrat, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-weight: 900; font-size: clamp(52px, 12vw, 104px); line-height: 1; letter-spacing: -.01em; margin: 20px 0 10px; }
+.subtitle { font-family: Montserrat, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-weight: 700; font-size: clamp(20px, 3.4vw, 30px); line-height: 1.2; margin: 0 0 18px; max-width: 24em; }
+.authors { margin: 0; font-weight: 600; font-size: 18px; }
+.authors a { color: #fff; text-decoration-color: var(--sky); text-underline-offset: 3px; }
+.nw { white-space: nowrap; }
+.aff { margin: 2px 0 22px; color: var(--ice); font-size: 16px; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { display: inline-flex; align-items: center; min-height: 46px; padding: 0 18px; border-radius: 10px; border: 1px solid transparent;
+  font-weight: 600; font-size: 16px; text-decoration: none; line-height: 1.2; }
+.btn.primary { background: #fff; color: var(--navy); }
+.btn.primary:hover { background: var(--pale); }
+.btn.ghost { color: #fff; border-color: rgba(255,255,255,.4); }
+.btn.ghost:hover { background: rgba(255,255,255,.09); }
+.btn.soon { color: var(--ice); border: 1px dashed rgba(255,255,255,.3); cursor: default; }
+.session { margin: 18px 0 0; font-size: 14px; color: var(--ice); }
+
+/* hook and numbers, as on the poster */
+.hook { background: var(--blue); color: #fff; text-align: center; padding: 14px 0; font-family: Montserrat, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-weight: 800;
+  font-size: clamp(20px, 4.4vw, 34px); line-height: 1.25; }
+.hook .e { font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-weight: 700; }
+.kpi { background: var(--navy2); }
+.kpi .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(255,255,255,.15); }
+@media (min-width: 820px) { .kpi .grid { grid-template-columns: repeat(4, 1fr); } }
+.kpi .cell { background: var(--navy2); padding: 18px 14px 18px; }
+.kpi .v { font-family: Montserrat, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-weight: 800; color: #fff; font-size: clamp(22px, 3.6vw, 30px); line-height: 1.12; }
+.kpi .l { color: var(--ice); font-size: 14px; line-height: 1.38; margin-top: 4px; }
+
+/* sections */
+main section { padding-top: 46px; }
+h2 { font-family: Montserrat, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-weight: 800; color: var(--blue); font-size: clamp(25px, 4vw, 32px); line-height: 1.15; margin: 0 0 16px; }
+.lead { margin: -4px 0 18px; color: var(--ink2); }
+.idea { display: grid; gap: 16px; }
+@media (min-width: 780px) { .idea { grid-template-columns: 1fr 1fr; } }
+.card { border: 1px solid var(--line); border-top: 5px solid var(--blue); border-radius: 14px; padding: 20px 20px 16px; background: #fff; }
+.card.sas { border-top-color: var(--amber); background: var(--amberp); }
+.kicker { margin: 0 0 6px; font-family: Montserrat, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--blue); }
+.sas .kicker { color: var(--amberd); }
+.card h3 { margin: 0 0 10px; font-family: Montserrat, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-weight: 800; font-size: 20px; line-height: 1.25; color: var(--ink); }
+.card p { margin: 0 0 12px; }
+.proof { display: flex; gap: 12px; align-items: baseline; margin: 6px 0 0; padding-top: 12px; border-top: 1px dashed #c4cfe2; color: var(--ink); font-weight: 600; font-size: 15px; line-height: 1.4; }
+.proof b { font-family: Montserrat, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-weight: 800; font-size: 22px; color: var(--blue); white-space: nowrap; }
+.sas .proof b { color: var(--amberd); }
+.tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+@media (min-width: 560px) { .tiles { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 880px) { .tiles { grid-template-columns: repeat(5, 1fr); } }
+.tile { background: var(--pale); border-radius: 12px; padding: 14px 14px 12px; }
+.tile .n { font-family: Montserrat, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-weight: 800; font-size: 28px; line-height: 1.1; color: var(--ink); }
+.tile .d { font-size: 14px; line-height: 1.35; color: var(--ink2); margin-top: 4px; }
+.note { font-size: 14px; color: var(--muted); margin: 12px 0 0; }
+.poster { display: grid; gap: 22px; align-items: start; }
+@media (min-width: 780px) { .poster { grid-template-columns: minmax(0, 440px) 1fr; } }
+.poster img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 18px 50px rgba(13,27,62,.13); }
+.poster .side p { margin: 0 0 14px; }
+.btn.solid { background: var(--blue); color: #fff; }
+.btn.solid:hover { background: #1643a8; }
+.btn.line { background: #fff; color: var(--ink); border-color: var(--line); }
+.btn.line:hover { border-color: var(--blue); }
+.abstract p { margin: 0 0 12px; }
+.kw { font-size: 15px; color: var(--muted); }
+.author { margin-top: 46px; padding: 26px 22px; border-radius: 16px; background: var(--soft); border: 1px solid var(--line); }
+.open { display: inline-block; margin: 0 0 14px; padding: 6px 14px; border-radius: 999px; background: var(--blue); color: #fff; font-weight: 600; font-size: 15px; line-height: 1.35; }
+.author p { margin: 0 0 12px; }
+.links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+footer { margin-top: 52px; padding: 26px 0 40px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+footer p { margin: 0 0 6px; }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="art" aria-hidden="true"><svg class="start" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 178 92"><line x1="28.62" y1="45.67" x2="36.40" y2="5.48" stroke="#60a5fa" stroke-width="0.55" stroke-linecap="round" stroke-dasharray="1.8 2.0"/><line x1="36.40" y1="5.48" x2="97.50" y2="6.33" stroke="#60a5fa" stroke-width="0.55" stroke-linecap="round" stroke-dasharray="1.8 2.0"/><line x1="97.50" y1="6.33" x2="153.97" y2="7.03" stroke="#60a5fa" stroke-width="0.55" stroke-linecap="round" stroke-dasharray="1.8 2.0"/><line x1="153.97" y1="7.03" x2="180.29" y2="50.31" stroke="#60a5fa" stroke-width="0.55" stroke-linecap="round" stroke-dasharray="1.8 2.0"/><g opacity="0.8"><line x1="17.80" y1="10.12" x2="17.80" y2="20.17" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="17.80" y1="20.17" x2="17.80" y2="33.30" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="17.80" y1="33.30" x2="17.80" y2="48.76" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="17.80" y1="20.17" x2="10.84" y2="22.48" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="17.80" y1="20.17" x2="24.76" y2="22.48" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="10.84" y1="22.48" x2="7.75" y2="34.08" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="7.75" y1="34.08" x2="6.98" y2="45.67" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="24.76" y1="22.48" x2="27.85" y2="34.08" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="27.85" y1="34.08" x2="28.62" y2="45.67" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="17.80" y1="48.76" x2="22.44" y2="50.31" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="17.80" y1="48.76" x2="13.16" y2="50.31" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="22.44" y1="50.31" x2="23.21" y2="67.31" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="23.21" y1="67.31" x2="23.98" y2="85.08" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="13.16" y1="50.31" x2="12.39" y2="67.31" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="12.39" y1="67.31" x2="11.62" y2="85.08" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><circle cx="17.80" cy="6.26" r="4.79136" fill="none" stroke="#ffffff" stroke-width="1.0"/><circle cx="17.80" cy="20.17" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="17.80" cy="33.30" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="10.84" cy="22.48" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="24.76" cy="22.48" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="7.75" cy="34.08" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="27.85" cy="34.08" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="6.98" cy="45.67" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="28.62" cy="45.67" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="22.44" cy="50.31" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="13.16" cy="50.31" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="23.21" cy="67.31" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="12.39" cy="67.31" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="23.98" cy="85.08" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="11.62" cy="85.08" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/></g><g opacity="0.8500000000000001"><line x1="49.54" y1="10.89" x2="50.31" y2="20.94" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="50.31" y1="20.94" x2="51.85" y2="34.08" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="51.85" y1="34.08" x2="53.40" y2="48.76" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="50.31" y1="20.94" x2="57.26" y2="23.26" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="50.31" y1="20.94" x2="43.35" y2="21.71" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="57.26" y1="23.26" x2="65.76" y2="25.58" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="65.76" y1="25.58" x2="73.49" y2="22.48" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="43.35" y1="21.71" x2="34.85" y2="17.85" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="34.85" y1="17.85" x2="36.40" y2="5.48" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="53.40" y1="48.76" x2="57.26" y2="50.31" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="53.40" y1="48.76" x2="48.76" y2="50.31" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="57.26" y1="50.31" x2="61.13" y2="65.76" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="61.13" y1="65.76" x2="65.76" y2="83.54" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="48.76" y1="50.31" x2="54.95" y2="68.08" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="54.95" y1="68.08" x2="50.31" y2="85.08" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><circle cx="49.54" cy="7.03" r="4.79136" fill="none" stroke="#ffffff" stroke-width="1.0"/><circle cx="50.31" cy="20.94" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="51.85" cy="34.08" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="57.26" cy="23.26" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="43.35" cy="21.71" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="65.76" cy="25.58" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="34.85" cy="17.85" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="73.49" cy="22.48" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="36.40" cy="5.48" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="57.26" cy="50.31" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="48.76" cy="50.31" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="61.13" cy="65.76" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="54.95" cy="68.08" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="65.76" cy="83.54" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="50.31" cy="85.08" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/></g><g opacity="0.9"><line x1="91.09" y1="11.74" x2="90.58" y2="21.79" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="90.58" y1="21.79" x2="90.00" y2="34.93" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="90.00" y1="34.93" x2="89.00" y2="49.19" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="90.58" y1="21.79" x2="89.46" y2="23.68" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="90.58" y1="21.79" x2="91.28" y2="21.71" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="89.46" y1="23.68" x2="89.04" y2="29.83" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="89.04" y1="29.83" x2="89.97" y2="33.54" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="91.28" y1="21.71" x2="92.55" y2="16.15" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="92.55" y1="16.15" x2="97.50" y2="6.33" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="89.00" y1="49.19" x2="92.86" y2="50.73" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="89.00" y1="49.19" x2="84.36" y2="50.73" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="92.86" y1="50.73" x2="98.43" y2="65.76" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="98.43" y1="65.76" x2="103.06" y2="83.96" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="84.36" y1="50.73" x2="87.57" y2="68.51" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="87.57" y1="68.51" x2="80.81" y2="84.66" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><circle cx="91.09" cy="7.88" r="4.79136" fill="none" stroke="#ffffff" stroke-width="1.0"/><circle cx="90.58" cy="21.79" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="90.00" cy="34.93" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="89.46" cy="23.68" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="91.28" cy="21.71" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="89.04" cy="29.83" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="92.55" cy="16.15" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="89.97" cy="33.54" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="97.50" cy="6.33" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="92.86" cy="50.73" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="84.36" cy="50.73" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="98.43" cy="65.76" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="87.57" cy="68.51" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="103.06" cy="83.96" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="80.81" cy="84.66" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/></g><g opacity="0.9500000000000001"><line x1="131.56" y1="12.44" x2="130.01" y2="22.48" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="130.01" y1="22.48" x2="127.69" y2="35.62" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="127.69" y1="35.62" x2="124.60" y2="49.53" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="130.01" y1="22.48" x2="122.28" y2="24.03" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="130.01" y1="22.48" x2="136.96" y2="21.71" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="122.28" y1="24.03" x2="114.55" y2="33.30" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="114.55" y1="33.30" x2="109.92" y2="42.58" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="136.96" y1="21.71" x2="146.24" y2="14.76" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="146.24" y1="14.76" x2="153.97" y2="7.03" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="124.60" y1="49.53" x2="128.46" y2="51.08" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="124.60" y1="49.53" x2="119.96" y2="51.08" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="128.46" y1="51.08" x2="135.42" y2="65.76" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="135.42" y1="65.76" x2="140.06" y2="84.31" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="119.96" y1="51.08" x2="120.74" y2="68.85" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="120.74" y1="68.85" x2="112.24" y2="84.31" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><circle cx="131.56" cy="8.57" r="4.79136" fill="none" stroke="#ffffff" stroke-width="1.0"/><circle cx="130.01" cy="22.48" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="127.69" cy="35.62" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="122.28" cy="24.03" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="136.96" cy="21.71" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="114.55" cy="33.30" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="146.24" cy="14.76" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="109.92" cy="42.58" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="153.97" cy="7.03" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="128.46" cy="51.08" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="119.96" cy="51.08" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="135.42" cy="65.76" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="120.74" cy="68.85" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="140.06" cy="84.31" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="112.24" cy="84.31" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/></g><g opacity="1.0"><line x1="173.34" y1="19.39" x2="170.25" y2="27.12" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="170.25" y1="27.12" x2="165.61" y2="38.71" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="165.61" y1="38.71" x2="160.20" y2="51.08" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="170.25" y1="27.12" x2="163.29" y2="28.67" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="170.25" y1="27.12" x2="177.20" y2="27.12" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="163.29" y1="28.67" x2="156.34" y2="37.94" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="156.34" y1="37.94" x2="152.47" y2="46.44" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="177.20" y1="27.12" x2="183.38" y2="37.94" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="183.38" y1="37.94" x2="180.29" y2="50.31" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="160.20" y1="51.08" x2="164.06" y2="52.62" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="160.20" y1="51.08" x2="155.56" y2="52.62" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="164.06" y1="52.62" x2="171.02" y2="67.31" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="171.02" y1="67.31" x2="175.66" y2="85.08" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="155.56" y1="52.62" x2="154.02" y2="69.63" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><line x1="154.02" y1="69.63" x2="143.20" y2="79.67" stroke="#ffffff" stroke-width="1.0" stroke-linecap="round" /><circle cx="173.34" cy="15.53" r="4.79136" fill="none" stroke="#ffffff" stroke-width="1.0"/><circle cx="170.25" cy="27.12" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="165.61" cy="38.71" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="163.29" cy="28.67" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="177.20" cy="27.12" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="156.34" cy="37.94" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="183.38" cy="37.94" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="152.47" cy="46.44" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="180.29" cy="50.31" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="164.06" cy="52.62" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="155.56" cy="52.62" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="171.02" cy="67.31" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="154.02" cy="69.63" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="175.66" cy="85.08" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/><circle cx="143.20" cy="79.67" r="1.25" fill="#ffffff" stroke="none" stroke-width="0.5"/></g></svg></div>
+  <div class="wrap">
+    <p class="badge"><b>ICONIP 2026</b>Accepted · to appear in Springer LNCS</p>
+    <h1>ESA-GCN</h1>
+    <p class="subtitle">Efficient Semantic-Aware Graph Convolution for Skeleton-Based Action Recognition</p>
+    <p class="authors"><a href="https://shawn7702.github.io/">Yi Xia</a> · <span class="nw">Sira Yongchareon</span> · <span class="nw">Raymond Lutui</span></p>
+    <p class="aff">Auckland University of Technology, New Zealand</p>
+    <div class="actions">
+      <a class="btn primary" href="ESA-GCN_ICONIP2026_poster.pdf">Poster (PDF)</a>
+      <span class="btn soon">Paper: link after publication</span>
+      <a class="btn ghost" href="mailto:xiayi.shawn.001@gmail.com?subject=ESA-GCN%20poster%2C%20ICONIP%202026">Email the author</a>
+    </div>
+    <p class="session">Poster #53 · Poster Session 1 · Monday 23 November 2026 · Melbourne</p>
+  </div>
+</header>
+
+<div class="hook"><div class="wrap">Multiply, don’t add. Learn <span class="e">ε</span>, don’t search it.</div></div>
+
+<section class="kpi" aria-label="Key results">
+  <div class="wrap"><div class="grid">
+    <div class="cell"><div class="v">25 / 25</div><div class="l">results beat a retrained LA-GCN: 4 streams and their ensemble, on 5 splits</div></div>
+    <div class="cell"><div class="v">+0.53 to +0.73 pp</div><div class="l">4-stream ensemble gain on every split</div></div>
+    <div class="cell"><div class="v">4 of 5 splits</div><div class="l">best or tied among the 13 methods compared in the paper</div></div>
+    <div class="cell"><div class="v">+2.2–2.6%</div><div class="l">more parameters, with +4.9% FLOPs</div></div>
+  </div></div>
+</section>
+
+<main class="wrap">
+  <section>
+    <h2>The idea</h2>
+    <p class="lead">Two compact modules on the LA-GCN backbone. One brings language in safely, the other removes a hand-tuned hyperparameter.</p>
+    <div class="idea">
+      <article class="card">
+        <p class="kicker">SEM · Semantic Edge Mask</p>
+        <h3>Inject language by multiplying the skeleton graph, not adding to it</h3>
+        <p>Additive language gates are prone to collapse: their scale <i>s</i> drifts to 0.003, and the language signal stops contributing. SEM turns embeddings of the action classes into a joint-to-joint mask that links joints attending to the same actions, and multiplies the graph by (1 + <i>s</i>·M).</p>
+        <p>It starts as identity, so training begins from the unchanged backbone, and <i>s</i> grows from 0.1 to 0.22–0.29 on every split.</p>
+        <p class="proof"><b>1 of 8</b><span>semantic-injection designs beats LA-GCN on NW-UCLA joint: ESA-GCN. The other 7 fall below it.</span></p>
+      </article>
+      <article class="card sas">
+        <p class="kicker">SAS · Stream-Asymmetric Smoothing</p>
+        <h3>Let each stream learn its own label smoothing</h3>
+        <p>Pipelines grid-search the smoothing strength <i>ε</i> for each modality: 0.05 for joint streams and 0.20 for bone streams. SAS makes <i>ε</i> one learnable scalar per stream, applied only in the loss, so it costs nothing at test time.</p>
+        <p>All 20 trainings start at 0.15 and settle near the grid-searched values: about 0.06–0.07 for joint streams and 0.22–0.24 for bone streams.</p>
+        <p class="proof"><b>4×</b><span>gap between bone and joint streams, recovered without any search.</span></p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Six-stream results</h2>
+    <div class="tiles">
+      <div class="tile"><div class="n">93.65</div><div class="d">NTU RGB+D 60<br>X-Sub</div></div>
+      <div class="tile"><div class="n">98.02</div><div class="d">NTU RGB+D 60<br>X-View</div></div>
+      <div class="tile"><div class="n">90.19</div><div class="d">NTU RGB+D 120<br>X-Sub</div></div>
+      <div class="tile"><div class="n">92.17</div><div class="d">NTU RGB+D 120<br>X-Set</div></div>
+      <div class="tile"><div class="n">97.63</div><div class="d">NW-UCLA</div></div>
+    </div>
+    <p class="note">Top-1 accuracy (%) of the six-stream ensemble at 1.47 M parameters per stream. Best or tied on 4 of 5 splits among the 13 methods compared in the paper.</p>
+  </section>
+
+  <section>
+    <h2>Poster</h2>
+    <div class="poster">
+      <a href="ESA-GCN_ICONIP2026_poster.pdf"><img src="poster_preview.jpg" width="1200" height="1697" loading="lazy" alt="A0 poster for ESA-GCN at ICONIP 2026: motivation, method diagram, results table, gain heatmap, learned smoothing values and ablation."></a>
+      <div class="side">
+        <p>The A0 poster as presented at ICONIP 2026, poster #53. The PDF is vector and zooms cleanly on a phone.</p>
+        <a class="btn solid" href="ESA-GCN_ICONIP2026_poster.pdf">Download the poster (PDF, 0.25 MB)</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="abstract">
+    <h2>Abstract</h2>
+    <p>Skeleton-based action recognition has converged on compact graph convolutional backbones from 1.3 to 2.0 million parameters. Recent work enriches these backbones with pretrained language priors, but the dominant additive fusion gate is prone to gradient collapse, and the label-smoothing strength is typically treated as a per-modality hyperparameter and tuned by grid search. We propose ESA-GCN, a lightweight extension of the LA-GCN backbone with two compact modules. The Semantic Edge Mask (SEM) derives a per-joint, per-frame edge mask from a frozen class-embedding codebook through cross-attention and a class-summed bilinear form and applies it multiplicatively to the channel-wise topology of the CTR-GC operator. The multiplicative-with-identity-offset formulation is functionally inert at initialisation and is immune to gate collapse by construction. The Stream-Asymmetric Smoothing (SAS) module replaces fixed-strength label smoothing with a learnable scalar per stream, allowing each modality to adapt its smoothing strength to its own noise level. Experiments on NTU RGB+D 60 (X-Sub and X-View), NTU RGB+D 120 (X-Sub and X-Set), and NW-UCLA show that ESA-GCN consistently improves the LA-GCN backbone on every (dataset, modality, split) cell, with four-stream ensemble gains of +0.53 to +0.73 percentage points across the five splits. With a six-stream multi-hop ensemble, ESA-GCN reaches 93.65% on NTU RGB+D 60 X-Sub, 98.02% on NTU RGB+D 60 X-View, 90.19% on NTU RGB+D 120 X-Sub, 92.17% on NTU RGB+D 120 X-Set, and 97.63% on NW-UCLA, surpassing the previously published six-ensemble state of the art on three of the five splits and matching it on a fourth, at a comparable parameter budget. ESA-GCN adds only +2.2% to +2.6% parameters and +4.9% FLOPs over LA-GCN.</p>
+    <p class="kw">Keywords: skeleton action recognition, graph convolution, semantic prior, label smoothing.</p>
+  </section>
+
+  <section class="author" aria-label="About the first author">
+    <h2>About the first author</h2>
+    <p class="open">Open to postdoctoral, lecturer and industry research positions</p>
+    <p><strong>Yi (Sean) Xia</strong> has completed a PhD thesis in Computer and Information Sciences at Auckland University of Technology, supervised by Assoc. Prof. Sira Yongchareon and Dr Raymond Lutui. The oral examination is in February 2027.</p>
+    <p>The research covers skeleton-based action recognition, spatio-temporal graph neural networks and frequency-aware representation learning, with first-author articles in <a href="https://doi.org/10.1016/j.patcog.2026.113146">Pattern Recognition</a> and <a href="https://doi.org/10.1016/j.cosrev.2026.101030">Computer Science Review</a>.</p>
+    <div class="links">
+      <a class="btn solid" href="mailto:xiayi.shawn.001@gmail.com?subject=ESA-GCN%20poster%2C%20ICONIP%202026">Email</a>
+      <a class="btn line" href="https://shawn7702.github.io/Yi_Xia_CV_Academic.pdf">Academic CV</a>
+      <a class="btn line" href="https://scholar.google.com/citations?user=CEyoI9IAAAAJ">Google Scholar</a>
+      <a class="btn line" href="https://www.linkedin.com/in/yi-xia-571a83267">LinkedIn</a>
+      <a class="btn line" href="https://shawn7702.github.io/">Homepage</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>ESA-GCN · ICONIP 2026, Melbourne, 23–27 November 2026. Citation details and the DOI will be added after publication.</p>
+    <p>© 2026 Yi Xia</p>
+  </div>
+</footer>
+</body>
+</html>
