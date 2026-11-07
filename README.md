@@ -1,22 +1,23 @@
 # Yi (Sean) Xia - Personal Website
 
-Recruiter-first portfolio for an Auckland-based Applied AI and ML Software Engineer.
+Personal site for an AI researcher and engineer: research first, with production AI experience. Open to postdoctoral, lecturer and AI development roles, and to relocation.
 
 Live site: https://shawn7702.github.io/
 
 ## Positioning
 
-- Primary audience: New Zealand AI/ML hiring managers and recruiters.
-- Primary action: download the two-page human-facing `Yi_Xia_CV.pdf`.
-- Secondary downloads: `Yi_Xia_CV_ATS.pdf` for application portals and `Yi_Xia_CV_Academic.pdf` for academic/research roles.
+- Primary audience: academic hiring panels, research labs and AI hiring managers, in New Zealand and abroad.
+- Primary action: download `Yi_Xia_CV_Academic.pdf`; `Yi_Xia_CV.pdf` is the industry CV.
+- Secondary downloads: `Yi_Xia_CV_ATS.pdf` for application portals.
+- `esa-gcn/` - project page for the ICONIP 2026 paper, linked from the poster QR code.
 
 ## Files
 
 - `index.html` - framework-free responsive site.
-- `Yi_Xia_CV.pdf` - primary public CV.
+- `Yi_Xia_CV.pdf` - industry CV.
 - `Yi_Xia_CV_ATS.pdf` - parser-safe ATS CV.
 - `Yi_Xia_CV_Academic.pdf` - academic and research CV.
 - `social-card.png` - social sharing image, generated from `social-card.svg`.
 - `favicon.svg`, `robots.txt`, `sitemap.xml` - discovery and identity assets.
 
-Legacy PDF filenames are kept as aliases so old links do not break.
+Legacy PDF filenames are kept as aliases so old links do not break: `Yi_Xia_CV_Industry.pdf` and `Yi_Xia_CV_Applied_AI.pdf` copy `Yi_Xia_CV.pdf`; `Yi_Xia_CV_Industry_ATS.pdf` copies the ATS CV.
