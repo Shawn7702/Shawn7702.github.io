@@ -25,6 +25,7 @@
   --navy: #0d1b3e; --navy2: #1e3a6e; --blue: #1a56db; --sky: #60a5fa; --ice: #bfdbfe; --pale: #e8f0fe;
   --ink: #0d1b3e; --ink2: #374151; --muted: #5b6b82; --line: #d5deec; --soft: #f5f8fd;
   --amber: #d97706; --amberd: #92400e; --amberp: #fdf6ea;
+  --sem: #0f766e; --semp: #eef9f6; --sas: #c2410c; --sast: #9a3412; --sasp: #fff4ea;
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
@@ -91,15 +92,15 @@ h2 { font-family: Montserrat, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
 .lead { margin: -4px 0 18px; color: var(--ink2); }
 .idea { display: grid; gap: 16px; }
 @media (min-width: 780px) { .idea { grid-template-columns: 1fr 1fr; } }
-.card { border: 1px solid var(--line); border-top: 5px solid var(--blue); border-radius: 14px; padding: 20px 20px 16px; background: #fff; }
-.card.sas { border-top-color: var(--amber); background: var(--amberp); }
-.kicker { margin: 0 0 6px; font-family: Montserrat, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--blue); }
-.sas .kicker { color: var(--amberd); }
+.card { border: 1px solid var(--line); border-top: 5px solid var(--sem); border-radius: 14px; padding: 20px 20px 16px; background: var(--semp); }
+.card.sas { border-top-color: var(--sas); background: var(--sasp); }
+.kicker { margin: 0 0 6px; font-family: Montserrat, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--sem); }
+.sas .kicker { color: var(--sast); }
 .card h3 { margin: 0 0 10px; font-family: Montserrat, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-weight: 800; font-size: 20px; line-height: 1.25; color: var(--ink); }
 .card p { margin: 0 0 12px; }
 .proof { display: flex; gap: 12px; align-items: baseline; margin: 6px 0 0; padding-top: 12px; border-top: 1px dashed #c4cfe2; color: var(--ink); font-weight: 600; font-size: 15px; line-height: 1.4; }
-.proof b { font-family: Montserrat, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-weight: 800; font-size: 22px; color: var(--blue); white-space: nowrap; }
-.sas .proof b { color: var(--amberd); }
+.proof b { font-family: Montserrat, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-weight: 800; font-size: 22px; color: var(--sem); white-space: nowrap; }
+.sas .proof b { color: var(--sast); }
 .tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
 @media (min-width: 560px) { .tiles { grid-template-columns: repeat(3, 1fr); } }
 @media (min-width: 880px) { .tiles { grid-template-columns: repeat(5, 1fr); } }
@@ -161,14 +162,14 @@ footer p { margin: 0 0 6px; }
     <p class="lead">Two compact modules on the LA-GCN backbone. One brings language in safely, the other removes a hand-tuned hyperparameter.</p>
     <div class="idea">
       <article class="card">
-        <p class="kicker">SEM · Semantic Edge Mask</p>
+        <p class="kicker">1 · SEM · Semantic Edge Mask</p>
         <h3>Inject language by multiplying the skeleton graph, not adding to it</h3>
         <p>Additive language gates are prone to collapse: their scale <i>s</i> drifts to 0.003, and the language signal stops contributing. SEM turns embeddings of the action classes into a joint-to-joint mask that links joints attending to the same actions, and multiplies the graph by (1 + <i>s</i>·M).</p>
         <p>It starts as identity, so training begins from the unchanged backbone, and <i>s</i> grows from 0.1 to 0.22–0.29 on every split.</p>
         <p class="proof"><b>1 of 8</b><span>semantic-injection designs beats LA-GCN on NW-UCLA joint: ESA-GCN. The other 7 fall below it.</span></p>
       </article>
       <article class="card sas">
-        <p class="kicker">SAS · Stream-Asymmetric Smoothing</p>
+        <p class="kicker">2 · SAS · Stream-Asymmetric Smoothing</p>
         <h3>Let each stream learn its own label smoothing</h3>
         <p>Pipelines grid-search the smoothing strength <i>ε</i> for each modality: 0.05 for joint streams and 0.20 for bone streams. SAS makes <i>ε</i> one learnable scalar per stream, applied only in the loss, so it costs nothing at test time.</p>
         <p>All 20 trainings start at 0.15 and settle near the grid-searched values: about 0.06–0.07 for joint streams and 0.22–0.24 for bone streams.</p>
@@ -192,10 +193,10 @@ footer p { margin: 0 0 6px; }
   <section>
     <h2>Poster</h2>
     <div class="poster">
-      <a href="ESA-GCN_ICONIP2026_poster.pdf"><img src="poster_preview.jpg" srcset="poster_preview_900.jpg 900w, poster_preview.jpg 1200w" sizes="(min-width: 780px) 440px, 100vw" width="1200" height="1697" loading="lazy" alt="A0 poster for ESA-GCN at ICONIP 2026: motivation, method diagram, results table, gain heatmap, learned smoothing values and ablation."></a>
+      <a href="ESA-GCN_ICONIP2026_poster.pdf"><img src="poster_preview.jpg" srcset="poster_preview_900.jpg 900w, poster_preview.jpg 1200w" sizes="(min-width: 780px) 440px, 100vw" width="1200" height="1697" loading="lazy" alt="A0 poster for ESA-GCN at ICONIP 2026: three contribution tiles, the model overview, one column each for SEM and SAS with problem, fix and evidence, then the results table and gain heatmap."></a>
       <div class="side">
         <p>The A0 poster as presented at ICONIP 2026, poster #53. The PDF is vector and zooms cleanly on a phone.</p>
-        <a class="btn solid" href="ESA-GCN_ICONIP2026_poster.pdf">Download the poster (PDF, 0.25 MB)</a>
+        <a class="btn solid" href="ESA-GCN_ICONIP2026_poster.pdf">Download the poster (PDF, 0.29 MB)</a>
       </div>
     </div>
   </section>
